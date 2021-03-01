@@ -15,7 +15,9 @@ import Referanser from './displayComponents/Referanser'
 import LangComp from './displayComponents/LangComp';
 import jsPDF from 'jspdf';
 import * as htmlToImage from 'html-to-image';
-
+import PictureAdder from "./editorComponents/pictureAdder";
+import CvPic from "./displayComponents/cvPic";
+import ColorSelector from "./editorComponents/ColorSelector"
 
 class App extends Component {
   state = {
@@ -46,7 +48,9 @@ class App extends Component {
       width: "35vw",
       height: "48vw"
     }, // responsiv pagesize som blir oppdatert ved eksport
-    textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"] // responsive tekstsizes som blir oppdatert ved eksport
+    textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"], // responsive tekstsizes som blir oppdatert ved eksport
+    img : "",
+    color : "rgb(8, 76, 65)"
   };
 
   inputHandler = event => {
@@ -84,6 +88,23 @@ class App extends Component {
     this.setState({ size2: sizesetter1 });
   };// hjelpemetode for eksportfunksjon
 
+  imageHandler = (event) => {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+  
+
+    reader.onload = event => {
+      this.setState({img : event.target.result})
+      
+    };
+    reader.readAsDataURL(selectedFile)
+    console.log(this.state.img)
+  }
+
+  ColorSelectorHandler = event => {
+    this.setState({color : event.target.style.backgroundColor})
+    
+  }
 
   render() {
 
@@ -213,6 +234,13 @@ class App extends Component {
         </Referanser>
       );
     });
+    
+    let pic = null
+
+    if(this.state.img != ""){
+      pic = <CvPic img = {this.state.img} ></CvPic>
+    }
+
 
     // editpage (venstre side) (form)
     let editPage = (
@@ -220,8 +248,18 @@ class App extends Component {
         <div className="EditPageWrapper">
 
           <div className="Detaljer">
-
-            <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (kan endres)"></InputComp>
+            <div className = "Detaljeheader">
+              <div className = "FirstRow">
+                    <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (kan endres)"></InputComp>
+                <div className = "ColorSelectors">
+                      <ColorSelector color = "rgb(0, 89, 255)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                      <ColorSelector color = "rgb(8, 76, 65)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                      <ColorSelector color = "rgb(170, 113, 6)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                </div>
+              </div>
+             
+              <PictureAdder handler = {this.imageHandler}></PictureAdder>
+            </div>
             <div className="DetaljWrapper">
               <div className="LeftSide">
                 <p>Fornavn</p>
@@ -352,10 +390,12 @@ class App extends Component {
     let cVPage = (
       <div className="Cv" >
           <div className="CvWrapper" id="capture" style={this.state.size2}>
-            <div className="SideBarWrapper">
-              <div className="SideBar">
-                <Name font={this.state.textSize} fName={this.state.fName} lName={this.state.lName}></Name>
+            <div className="SideBarWrapper" >
+              <div className="SideBar" style = {{"backgroundColor": this.state.color}}>
+                       
                 <div className=" SectionSplitter1">
+                  {pic}
+                  <Name font={this.state.textSize} fName={this.state.fName} lName={this.state.lName}></Name>
                   {Detaljer}
                   <OneLiner font={this.state.textSize} info={this.state.tlf}></OneLiner>
                   <OneLiner font={this.state.textSize} info={this.state.email}></OneLiner>
