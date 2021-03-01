@@ -458,7 +458,7 @@ class App extends Component {
       let domElement = document.getElementById('capture');
       htmlToImage.toJpeg(domElement)
         .then(function (dataUrl) {
-          const pdf = new jsPDF();
+          const pdf = new jsPDF('p', 'in', 'a4');
           pdf.addImage(dataUrl, 'pdf', 0, 0);
           pdf.save("download.pdf");
           stylesetter2();
