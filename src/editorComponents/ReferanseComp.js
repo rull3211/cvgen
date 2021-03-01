@@ -7,14 +7,9 @@ const ReferaneComp = (props)=>{
             marginBottom: "30px",
             border: "2px solid rgb(147, 148, 150)"
       }
-      const divStyle = {
-            margin: "10px",
-            display: "flex",
-            flexDirection: "row"
-      }
       return (
             <div style = {style}>
-                  <div style = {divStyle}>
+                  <div className = "InputWrapper">
                         <InputComp 
                               id = "Navn" 
                               handler = {props.handler} 
@@ -28,7 +23,7 @@ const ReferaneComp = (props)=>{
                               ph = "Organisasjon/stilling">
                         </InputComp>
                   </div>
-                  <div style = {divStyle}>
+                  <div className = "InputWrapper">
                         <InputComp 
                               id = "Tlf" 
                               handler = {props.handler} 

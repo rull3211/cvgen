@@ -2,23 +2,7 @@ import React from 'react';
 
 import InputComp from './InputComp'
 const UtdanningEditor = (props)=>{
-      const outerStyle = {
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            marginBottom: "30px",
-            border: "2px solid rgb(147, 148, 150)"
-      }
-      const innerStyle = {
-            display: "flex",
-            width: "100%",
-            marginBottom :"10px"
-      }
-      const innerStyle2 = {
-            display: "flex",
-            width: "100%",
-            marginRight: "40px"
-      }
+      
       const textStyle = {
             width: "100%",
             height: "30vh",
@@ -27,13 +11,11 @@ const UtdanningEditor = (props)=>{
             backgroundColor: "rgb(242, 245, 250)",
             fontSize : "15pt"
       }
-      const wrapperStyle = {
-            margin: "10px"
-      }
 
-      return (<div style = {outerStyle}>
-                  <div style = {wrapperStyle}>
-                        <div style = {innerStyle}>
+
+      return (<div className = "FivePointWrapper">
+                  <div className = "RowWrapper">
+                        <div className = "InputWrapper">
                               <InputComp 
                                     id = "Grad" 
                                     handler ={props.handler} 
@@ -47,8 +29,8 @@ const UtdanningEditor = (props)=>{
                                     cName ={props.cname}>
                               </InputComp>
                         </div>
-                        <div style = {innerStyle}>
-                              <div style = {innerStyle2}>
+                        <div className = "RowWrapper">
+                              <div className = "InputWrapper">
                                     <InputComp 
                                           id = "Start" 
                                           handler ={props.handler} 
@@ -62,15 +44,17 @@ const UtdanningEditor = (props)=>{
                                           cName ={props.cname}>
                                     </InputComp>
                               </div>
+                        </div>
+                        <div className = "InputWrapper">
                               <InputComp 
                                     handler = {props.handler} 
                                     id = "By" 
                                     ph= {props.ph[4]}
                                     cName ={props.cname}>
                               </InputComp>
-
                         </div>
-                        <div> 
+                        <div className = "InputWrapper">
+                        <div className = "RowWrapper">
                               <p>Beskrivelse</p>
                               <textarea 
                                     style = {textStyle} 
@@ -78,6 +62,7 @@ const UtdanningEditor = (props)=>{
                                     onChange ={props.handler} 
                                     className ={props.cname}>
                               </textarea>
+                              </div>
                         </div>
                   </div>
             </div>)

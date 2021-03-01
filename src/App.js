@@ -47,8 +47,13 @@ class App extends Component {
     size2: {
       width: "35vw",
       height: "48vw"
-    }, // responsiv pagesize som blir oppdatert ved eksport
-    textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"], // responsive tekstsizes som blir oppdatert ved eksport
+    },
+    oldSize : {
+      width: "35vw",
+      height: "48vw"
+    },
+     // responsiv pagesize som blir oppdatert ved eksport
+    textSize: ["14pt", "13pt", "10pt", "0.65vw", "7pt", "0.4vw"], // responsive tekstsizes som blir oppdatert ved eksport
     img : "",
     color : "rgb(8, 76, 65)"
   };
@@ -80,14 +85,7 @@ class App extends Component {
     };
   }; // behandler alle eventer relatert til addbutton
 
-  stylesetter1 = () => {
-    let sizesetter1 = {
-      width: "21cm",
-      height: "29.7cm"
-    };
-    this.setState({ size2: sizesetter1 });
-  };// hjelpemetode for eksportfunksjon
-
+ 
   imageHandler = (event) => {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
@@ -100,14 +98,24 @@ class App extends Component {
     reader.readAsDataURL(selectedFile)
     console.log(this.state.img)
   }
-
   ColorSelectorHandler = event => {
     this.setState({color : event.target.style.backgroundColor})
     
   }
-
+  
   render() {
+   window.onload = ()=>{
+      if (window.matchMedia('(max-device-width: 1000px)').matches) {
+        this.setState({size2:{
+          width: "100vw",
+          height: "100vh"
+        }, oldSize:{
+          width: "100vw",
+          height: "100vh"
+        }})
+      }
 
+   }
     // SeksjonsOverskrifter
     let Detaljer = (<div style={{ fontSize: "12" }}><h1 style={{ fontSize: this.state.textSize[2] }} id="Detaljer">{this.state.Detaljer} </h1></div>);
     let Ferdigheter = (<div style={{ fontSize: "12" }}><h1 style={{ fontSize: this.state.textSize[2] }} id="Ferdigheter">{this.state.Ferdigheter} </h1></div>);
@@ -240,8 +248,7 @@ class App extends Component {
     if(this.state.img != ""){
       pic = <CvPic img = {this.state.img} ></CvPic>
     }
-
-
+    
     // editpage (venstre side) (form)
     let editPage = (
       <div className="EditPage">
@@ -437,28 +444,28 @@ class App extends Component {
 
         </div>
     );
-    
+    let  stylesetter1 = () => {
+
+      let sizesetter1 = {
+        width: "21cm",
+        height: "29.7cm"
+      };
+      this.setState({ size2: sizesetter1 , textSize : ["100%","100%","100%","100%","100%","100%"]});
+    };// hjelpemetode for eksportfunksjon
+  
     // hjelpemetode for exportfunksjon
     let stylesetter2 = () => {
-      let sizesetter2 = {
-        width: "35vw",
-        height: "48vw"
-      };
-      let sizesetter3 = {
-        width: "100%",
-        height: "100%"
-      };
-      this.setState({ size1: sizesetter3, size2: sizesetter2, textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"] });
+      this.setState({ size2: this.state.oldSize, textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"] });
+      console.log(this.state.oldSize)
     };
 
 
     // eksportfunksjon
     const htmlToPdf = () => {
-      this.setState({ textSize: ["100%", "100%", "100%", "100%", "100%", "100%"] });
       let domElement = document.getElementById('capture');
       htmlToImage.toJpeg(domElement)
         .then(function (dataUrl) {
-          const pdf = new jsPDF('p', 'in', 'a4');
+          const pdf = new jsPDF();
           pdf.addImage(dataUrl, 'pdf', 0, 0);
           pdf.save("download.pdf");
           stylesetter2();
@@ -469,7 +476,7 @@ class App extends Component {
     return (
       <div className="App">
         {editPage}
-        <button onMouseDown={this.stylesetter1} className="DownloadButton" onMouseUp={htmlToPdf}> Export pdf</button>
+        <button onMouseDown = {stylesetter1} onClick = {htmlToPdf} className="DownloadButton" > Export pdf</button>
         {cVPage}
       </div>
     );
