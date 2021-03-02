@@ -53,8 +53,13 @@ class App extends Component {
       height: "48vw"
     },
      // responsiv pagesize som blir oppdatert ved eksport
-    textSize: ["14pt", "13pt", "10pt", "0.65vw", "7pt", "0.4vw"], // responsive tekstsizes som blir oppdatert ved eksport
+    textSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"],
+    oldtextSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"], // responsive tekstsizes som blir oppdatert ved eksport
     img : "",
+    imgSize: {
+      height: "80px",
+      width: "80px"
+    },
     color : "rgb(8, 76, 65)"
   };
 
@@ -108,11 +113,14 @@ class App extends Component {
       if (window.matchMedia('(max-device-width: 1000px)').matches) {
         this.setState({size2:{
           width: "100vw",
-          height: "100vh"
+          height: "calc(1.41*100vw)"
         }, oldSize:{
           width: "100vw",
-          height: "100vh"
-        }})
+          height: "calc(1.41*100vw)"
+        },
+        textSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"],
+        oldtextSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"]
+      })
       }
 
    }
@@ -245,8 +253,8 @@ class App extends Component {
     
     let pic = null
 
-    if(this.state.img != ""){
-      pic = <CvPic img = {this.state.img} ></CvPic>
+    if(this.state.img !== ""){
+      pic = <CvPic style = {this.state.imgSize} img = {this.state.img} ></CvPic>
     }
     
     // editpage (venstre side) (form)
@@ -450,13 +458,20 @@ class App extends Component {
         width: "21cm",
         height: "29.7cm"
       };
-      this.setState({ size2: sizesetter1 , textSize : ["100%","100%","100%","100%","100%","100%"]});
+      this.setState({ size2: sizesetter1 , textSize : ["100%","100%","100%","100%","100%","100%"],
+      imgSize: {
+        height: "150px",
+        width: "150px"
+      }});
     };// hjelpemetode for eksportfunksjon
   
     // hjelpemetode for exportfunksjon
     let stylesetter2 = () => {
-      this.setState({ size2: this.state.oldSize, textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"] });
-      console.log(this.state.oldSize)
+      this.setState({ size2: this.state.oldSize, textSize: this.state.oldtextSize,  
+        imgSize: {
+        height: "80px",
+        width: "80px"
+      } });
     };
 
 
