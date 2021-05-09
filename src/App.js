@@ -44,23 +44,9 @@ class App extends Component {
     erfaringer: [],
     referanser: [],
     fritider: [],
-    size2: {
-      width: "35vw",
-      height: "48vw"
-    },
-    oldSize : {
-      width: "35vw",
-      height: "48vw"
-    },
-     // responsiv pagesize som blir oppdatert ved eksport
-    textSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"],
-    oldtextSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"], // responsive tekstsizes som blir oppdatert ved eksport
-    img : "",
-    imgSize: {
-      height: "80px",
-      width: "80px"
-    },
-    color : "rgb(8, 76, 65)"
+    color : "rgb(8, 76, 65)",
+    preview : false,
+    buttonText : "Åpne forhåndsvisning"
   };
 
   inputHandler = event => {
@@ -78,7 +64,18 @@ class App extends Component {
     this.setState(newLi);
   }; // behandler alle eventer relatert til input hvor indeks er nødvendig
 
+  previewHandler = event => {
+    let preview = this.state.preview
+    let buttonText = ""
+    if(!preview){
+      buttonText = "Lukk forhåndsvisning"
+    }
+    else{
+      buttonText = "Åpne forhåndsvisning"
+    }
 
+    this.setState({preview: !preview, buttonText: buttonText})
+  }
   addHandler = (event) => {
     if (event.keyCode === 13 || event.type === "click") {
       let id = event.target.getAttribute("n");
@@ -109,30 +106,14 @@ class App extends Component {
   }
   
   render() {
-   window.onload = ()=>{
-      if (window.matchMedia('(max-device-width: 1000px)').matches) {
-        this.setState({size2:{
-          width: "100vw",
-          height: "calc(1.41*100vw)"
-        }, oldSize:{
-          width: "100vw",
-          height: "calc(1.41*100vw)"
-        },
-        textSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"],
-        oldtextSize: ["10pt", "8pt", "6pt", "5pt", "4pt", "4pt"]
-      })
-      }
-
-   }
-    // SeksjonsOverskrifter
-    let Detaljer = (<div style={{ fontSize: "12" }}><h1 style={{ fontSize: this.state.textSize[2] }} id="Detaljer">{this.state.Detaljer} </h1></div>);
-    let Ferdigheter = (<div style={{ fontSize: "12" }}><h1 style={{ fontSize: this.state.textSize[2] }} id="Ferdigheter">{this.state.Ferdigheter} </h1></div>);
-    let Språk = (<div style={{ fontSize: "12" }}><h1 style={{ fontSize: this.state.textSize[2] }} id="Språk">{this.state.Språk} </h1></div>);
-    let Utdanning = (<div style={{ fontSize: "14" }}><h1 style={{ fontSize: this.state.textSize[1] }} id="Utdanning">{this.state.Utdanning} </h1></div>);
-    let Erfaring = (<div style={{ fontSize: "14" }}><h1 style={{ fontSize: this.state.textSize[1] }} id="Erfaring">{this.state.Erfaring} </h1></div>);
-    let Referanse = (<div style={{ fontSize: "14" }}><h1 style={{ fontSize: this.state.textSize[1] }} id="Referanse">{this.state.Referanse} </h1></div>);
-    let Fritiden = (<div style={{ fontSize: "14" }}><h1 style={{ fontSize: this.state.textSize[1] }} id="Fritiden">{this.state.Fritiden} </h1></div>);
-
+  
+    let Detaljer = (<h1  className = "size6">{this.state.Detaljer} </h1>);
+    let Ferdigheter = (<h1 className = "size6">{this.state.Ferdigheter} </h1>);
+    let Språk = (<h1  className = "size6">{this.state.Språk} </h1>);
+    let Utdanning = (<h1  className = "size1">{this.state.Utdanning} </h1>);
+    let Erfaring = (<h1 className = "size1">{this.state.Erfaring} </h1>);
+    let Referanse = (<h1  className = "size1">{this.state.Referanse} </h1>);
+    let Fritiden = (<h1  className = "size1">{this.state.Fritiden} </h1>);
 
   // editor/adder elementer
     let renderLanguageAdders = this.state.languageAdders.map((el, index) => {
@@ -144,14 +125,18 @@ class App extends Component {
           id2="nivå"
           ph1="Språk"
           ph2="Nivå"
-          key={index}>
+          key={index}
+          val={this.state.languageAdders[index]}
+          >
         </LinkAdder>);
     });
     let renderSkillAdders = this.state.skillAdders.map((el, index) => {
       return (
         <SkillComp 
           key={index} 
-          handler={this.indexedInputHandler.bind(this, index)}>
+          handler={this.indexedInputHandler.bind(this, index)}
+          val = {this.state.skillAdders[index].skill}
+          >
         </SkillComp>);
     });
     let renderUtdanningAdders = this.state.utdanning.map((el, index) => {
@@ -160,7 +145,9 @@ class App extends Component {
           key={index}
           cname="utdanning"
           handler={this.indexedInputHandler.bind(this, index)}
-          ph={["Grad", "Skole", "Start", "Slutt", "By"]}>
+          ph={["Grad", "Skole", "Start", "Slutt", "By"]}
+          val = {this.state.utdanning[index]}
+          >
         </UtdanningEditor>
       );
     });
@@ -170,7 +157,8 @@ class App extends Component {
           key={index}
           cname="erfaringer"
           handler={this.indexedInputHandler.bind(this, index)}
-          ph={["Tittel/jobb", "Ansetter/institusjon", "Start", "Slutt", "By"]}>
+          ph={["Tittel/jobb", "Ansetter/institusjon", "Start", "Slutt", "By"]}
+          val = {this.state.erfaringer[index]}>
         </UtdanningEditor>
       );
     });
@@ -179,7 +167,8 @@ class App extends Component {
         <ReferaneComp
           handler={this.indexedInputHandler.bind(this, index)}
           cname="referanser"
-          key={index}>
+          key={index}
+          val = {this.state.referanser[index]}>
         </ReferaneComp>
       );
     });
@@ -189,7 +178,8 @@ class App extends Component {
           cname="fritider"
           handler={this.indexedInputHandler.bind(this, index)}
           ph={["Funksjonstittel/handling", "Ansetter/institusjon", "Start", "Slutt", "By"]}
-          key={index}>
+          key={index}
+          val = {this.state.fritider[index]}>
         </UtdanningEditor>
       );
     });
@@ -198,26 +188,22 @@ class App extends Component {
     // Cv element renderere
     let renderSkills = this.state.skillAdders.map((el, index) => {
       return (
-        <OneLiner 
-          key={index} 
-          font={this.state.textSize} 
-          info={el.skill}>
-        </OneLiner>);
+        <p className = "size4" key={index}>
+          {el.skill}
+        </p>);
     });
     let renderLanguage = this.state.languageAdders.map((el, index) => {
       return (
         <LangComp 
           key={index} 
-          font={this.state.textSize} 
-          Språk={el.språk} 
-          Nivå={el.nivå}>
+          språk={el.språk} 
+          nivå={el.nivå}>
         </LangComp>);
     });
     let renderUtdanning = this.state.utdanning.map((el, index) => {
       return (
         <FivePointComp
-          info={[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
-          font={this.state.textSize}
+          info={[el.grad, el.skole, el.by, el.start, el.slutt, el.beskrivelse]}
           key={index}>
         </FivePointComp>
 
@@ -226,7 +212,7 @@ class App extends Component {
     let renderErfaring = this.state.erfaringer.map((el, index) => {
       return (
         <FivePointComp
-          info={[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
+        info={[el.grad, el.skole, el.by, el.start, el.slutt, el.beskrivelse]}
           font={this.state.textSize}
           key={index}>
         </FivePointComp>
@@ -235,7 +221,7 @@ class App extends Component {
     let renderFritider = this.state.fritider.map((el, index) => {
       return (
         <FivePointComp
-          info={[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
+        info={[el.grad, el.skole, el.by, el.start, el.slutt, el.beskrivelse]}
           font={this.state.textSize}
           key={index}>
         </FivePointComp>
@@ -246,7 +232,7 @@ class App extends Component {
         <Referanser 
           key={index} 
           font={this.state.textSize} 
-          info={[el.Navn, el.Org, el.Tlf, el.Email]}> 
+          info={[el.navn, el.org, el.tlf, el.email]}> 
         </Referanser>
       );
     });
@@ -254,7 +240,7 @@ class App extends Component {
     let pic = null
 
     if(this.state.img !== ""){
-      pic = <CvPic style = {this.state.imgSize} img = {this.state.img} ></CvPic>
+      pic = <CvPic img = {this.state.img} ></CvPic>
     }
     
     // editpage (venstre side) (form)
@@ -262,117 +248,117 @@ class App extends Component {
       <div className="EditPage">
         <div className="EditPageWrapper">
 
-          <div className="Detaljer">
-            <div className = "Detaljeheader">
+         
+            <div className = "FirstBlock">
               <div className = "FirstRow">
-                    <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (kan endres)"></InputComp>
-                <div className = "ColorSelectors">
-                      <ColorSelector color = "rgb(0, 89, 255)" handler = {this.ColorSelectorHandler}></ColorSelector>
-                      <ColorSelector color = "rgb(8, 76, 65)" handler = {this.ColorSelectorHandler}></ColorSelector>
-                      <ColorSelector color = "rgb(170, 113, 6)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                      <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (kan endres)"></InputComp>
+                  <div className = "ColorSelectors">
+                        <ColorSelector color = "rgb(0, 89, 255)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                        <ColorSelector color = "rgb(8, 76, 65)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                        <ColorSelector color = "rgb(170, 113, 6)" handler = {this.ColorSelectorHandler}></ColorSelector>
+                  </div>
                 </div>
-              </div>
-             
-              <PictureAdder handler = {this.imageHandler}></PictureAdder>
+                <PictureAdder handler = {this.imageHandler}></PictureAdder>
+                <div className="DetaljWrapper">
+                  <div className="LeftSide">
+                    <p>Fornavn</p>
+                    <InputComp 
+                      handler={this.inputHandler} 
+                      id={"fName"} 
+                      came={"Personalia"} 
+                      val={this.state.fName} > 
+                    </InputComp>
+                  </div>
+                  <div className = "RightSide">
+                    <p>Etternavn</p>
+                    <InputComp 
+                      handler={this.inputHandler} 
+                      id={"lName"} 
+                      cName={"Personalia"} 
+                      val={this.state.lName} > 
+                    </InputComp>
+                  </div>
+                </div>
+                <div className="DetaljWrapper">
+                  <div className="LeftSide">
+                    <p>Telefonnummer</p>
+                    <InputComp
+                      handler={this.inputHandler} 
+                      id={"tlf"} cName={"Personalia"} 
+                      val={this.state.tlf} > 
+                    </InputComp>
+                  </div>
+                  <div className = "RightSide">
+                    <p>Email</p>
+                    <InputComp 
+                      handler={this.inputHandler} 
+                      id={"email"} 
+                      cName={"Personalia"} 
+                      val={this.state.email} > 
+                    </InputComp>
+                  </div>
+                </div>
+                <div>
+                  <AboutMeComp handler={this.inputHandler}
+                    val={this.state.aboutMe}
+                  ></AboutMeComp>
+                </div>
             </div>
-            <div className="DetaljWrapper">
-              <div className="LeftSide">
-                <p>Fornavn</p>
-                <InputComp 
-                  handler={this.inputHandler} 
-                  id={"fName"} 
-                  came={"Personalia"} 
-                  val={this.state.fName} > 
-                </InputComp>
-              </div>
-              <div>
-                <p>Etternavn</p>
-                <InputComp 
-                  handler={this.inputHandler} 
-                  id={"lName"} 
-                  cName={"Personalia"} 
-                  val={this.state.lName} > 
-                </InputComp>
-              </div>
-            </div>
-            <div className="DetaljWrapper">
-              <div className="LeftSide">
-                <p>Telefonnummer</p>
-                <InputComp
-                  handler={this.inputHandler} 
-                  id={"tlf"} cName={"Personalia"} 
-                  val={this.state.tlf} > 
-                </InputComp>
-              </div>
-              <div>
-                <p>Email</p>
-                <InputComp 
-                  handler={this.inputHandler} 
-                  id={"email"} 
-                  cName={"Personalia"} 
-                  val={this.state.email} > 
-                </InputComp>
-              </div>
-
-            </div>
-            <div>
-              <AboutMeComp handler={this.inputHandler}></AboutMeComp>
-            </div>
-              
-          </div>
+            
+      
           <ul className="Skill">
             <InputComp  
               id="Ferdigheter" 
               handler={this.inputHandler} 
               ph="Ferdigheter (kan endres)"> 
             </InputComp>
-            <div>{renderSkillAdders} </div>
+            {renderSkillAdders}
             <AddButton 
               n="skillAdders" 
               text="+ Legg til ferdighet" 
               handler={this.addHandler}> 
             </AddButton>
           </ul>
-          <ul>
+          <ul className ="Språk">
             <InputComp  
               id="Språk" 
               handler={this.inputHandler} 
               ph="Språk (kan endres)"> 
             </InputComp>
-            <div>{renderLanguageAdders} </div>
+            {renderLanguageAdders}
             <AddButton 
               n="languageAdders" 
               text="+ Legg til språk" 
               handler={this.addHandler}> 
             </AddButton>
           </ul>
-          <ul>
+          <ul className = "Utdanning">
             <InputComp 
               id="Utdanning" 
               handler={this.inputHandler} 
               ph="Utdanning (kan endres)"> 
             </InputComp>
-            <div>{renderUtdanningAdders} </div>
+            {renderUtdanningAdders}
             <AddButton 
               n="utdanning" 
               text="+ Legg til utdanning" 
               handler={this.addHandler} > 
             </AddButton>
           </ul>
-          <ul>
+          <ul className ="Erfaring">
             <InputComp  
               id="Erfaring" 
               handler={this.inputHandler} 
               ph="Erfaring (kan endres)"> 
             </InputComp>
-            <div>{renderErfaringAdders} </div>
+            {renderErfaringAdders}
             <AddButton 
               n="erfaringer" 
               text="+ Legg til erfaring" 
               handler={this.addHandler} > 
             </AddButton>
           </ul>
-          <ul>
+          <ul className = "Referanser">
             <InputComp  
               id="Referanser" 
               handler={this.inputHandler}
@@ -384,13 +370,13 @@ class App extends Component {
               text="+ Legg til referanse" 
               handler={this.addHandler} > </AddButton>
           </ul>
-          <ul>
+          <ul className = "Fritiden">
             <InputComp  
               id="Fritiden" 
               handler={this.inputHandler} 
               ph="På fritiden (kan endres)"> 
             </InputComp>
-            <div>{renderFritidenAdders} </div>
+            {renderFritidenAdders}
             <AddButton 
               n="fritider" 
               text="+ Legg til aktivitet" 
@@ -407,13 +393,14 @@ class App extends Component {
           <div className="CvWrapper" id="capture" style={this.state.size2}>
             <div className="SideBarWrapper" >
               <div className="SideBar" style = {{"backgroundColor": this.state.color}}>
-                       
-                <div className=" SectionSplitter1">
+                <div className = "sidebarTop">
                   {pic}
-                  <Name font={this.state.textSize} fName={this.state.fName} lName={this.state.lName}></Name>
+                  <Name fName={this.state.fName} lName={this.state.lName}></Name>
+                </div>
+                <div className=" SectionSplitter1">
                   {Detaljer}
-                  <OneLiner font={this.state.textSize} info={this.state.tlf}></OneLiner>
-                  <OneLiner font={this.state.textSize} info={this.state.email}></OneLiner>
+                  {this.state.tlf ? <p className = "size4">{this.state.tlf}</p> :null}
+                  {this.state.email ? <p className = "size4">{this.state.email}</p> : null}
                 </div>
                 <div className=" SectionSplitter1">
                   {Ferdigheter}
@@ -428,7 +415,7 @@ class App extends Component {
             <div className="MainContentWrapper">
               <div className="MainContent">
                 <div className="SectionSplitter">
-                  <DisplayAboutMe font={this.state.textSize} header={this.state.aboutmeheader} content={this.state.aboutMe}></DisplayAboutMe>
+                  <DisplayAboutMe header={this.state.aboutmeheader} content={this.state.aboutMe}></DisplayAboutMe>
                 </div>
                 <div className="SectionSplitter">
                   {Utdanning}
@@ -452,28 +439,9 @@ class App extends Component {
 
         </div>
     );
-    let  stylesetter1 = () => {
+ 
 
-      let sizesetter1 = {
-        width: "21cm",
-        height: "29.7cm"
-      };
-      this.setState({ size2: sizesetter1 , textSize : ["100%","100%","100%","100%","100%","100%"],
-      imgSize: {
-        height: "150px",
-        width: "150px"
-      }});
-    };// hjelpemetode for eksportfunksjon
-  
-    // hjelpemetode for exportfunksjon
-    let stylesetter2 = () => {
-      this.setState({ size2: this.state.oldSize, textSize: this.state.oldtextSize,  
-        imgSize: {
-        height: "80px",
-        width: "80px"
-      } });
-    };
-
+    
 
     // eksportfunksjon
     const htmlToPdf = () => {
@@ -483,16 +451,16 @@ class App extends Component {
           const pdf = new jsPDF();
           pdf.addImage(dataUrl, 'pdf', 0, 0);
           pdf.save("download.pdf");
-          stylesetter2();
         });
     };
 
 
     return (
       <div className="App">
-        {editPage}
-        <button onMouseDown = {stylesetter1} onClick = {htmlToPdf} className="DownloadButton" > Export pdf</button>
-        {cVPage}
+        {!this.state.preview ? editPage  : !editPage }
+        <button className="previewButton" onClick = {this.previewHandler}> {this.state.buttonText}</button>
+        {this.state.preview ? <button onClick = {htmlToPdf} className="DownloadButton" > Export pdf</button> : null}
+        {this.state.preview ? cVPage : !cVPage}
       </div>
     );
   };

@@ -25,7 +25,8 @@ const AboutMeComp = (props)=> {
                   </input>
                   <textarea style = {textStyle} 
                         id = "aboutMe" 
-                        onChange = {props.handler}>
+                        onChange = {props.handler}
+                        value= {props.val}>
                   </textarea>
             </div>
       )

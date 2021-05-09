@@ -3,40 +3,44 @@ import React from 'react';
 
 
 const ReferaneComp = (props)=>{
-      const style = { 
-            marginBottom: "30px",
-            border: "2px solid rgb(147, 148, 150)"
-      }
+      
       return (
-            <div style = {style}>
-                  <div className = "InputWrapper">
+            <div className = "OuterWrapper">
+                  <div className = "InnerWrapper">
+                        <div className = "InputWrapper">
                         <InputComp 
-                              id = "Navn" 
+                              id = "navn" 
                               handler = {props.handler} 
                               cName = {props.cname} 
-                              ph = "Referentens Navn">
+                              ph = "Referentens Navn"
+                              val = {props.val.navn}>
                         </InputComp>
                         <InputComp 
-                              id = "Org" 
+                              id = "org" 
                               handler = {props.handler} 
                               cName = {props.cname} 
-                              ph = "Organisasjon/stilling">
-                        </InputComp>
-                  </div>
-                  <div className = "InputWrapper">
-                        <InputComp 
-                              id = "Tlf" 
-                              handler = {props.handler} 
-                              cName = {props.cname} 
-                              ph ="Telefonnummer">
-                        </InputComp>
-                        <InputComp 
-                              id = "Email" 
-                              handler = {props.handler} 
-                              cName = {props.cname} 
-                              ph ="Email">
+                              ph = "Organisasjon/stilling"
+                              val = {props.val.org}>
                         </InputComp>
                   </div>
+                  <div className = "InputWrapper">
+                        <InputComp 
+                              id = "tlf" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph ="Telefonnummer"
+                              val = {props.val.tlf}>
+                        </InputComp>
+                        <InputComp 
+                              id = "email" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph ="Email"
+                              val = {props.val.email}>
+                        </InputComp>
+                  </div>
+                  </div>
+                  
             </div>
       )
 }

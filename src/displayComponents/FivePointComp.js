@@ -12,31 +12,21 @@ const FivePointComp = props => {
       if (props.info[4] !== undefined){
             dash = " - "
       }
-      const style = {
-            fontSize : props.font[3],
-            fontWeight: "bold"
-      }
-      const ageStyle = {
-            fontSize : props.font[5],
-      }
-      const style2 = {
-            fontSize : props.font[4],
-      }
-
+ 
       return (
             <div>
-                  <div style= {{fontSize:"11pt"}}>
-                        <h2 style = {style}> 
+                  <div >
+                        <p className = "size5"> 
                               {props.info[0]}{comma}{props.info[1]}{comma2}{props.info[2]}  
-                        </h2>
+                        </p>
                   </div>
-                  <div style= {{fontSize:"7pt"}}>
-                        <p style = {ageStyle}>
+                  <div >
+                        <p className = "size4">
                               {props.info[3]}{dash}{props.info[4]} 
                         </p>
                   </div>
-                  <div style= {{fontSize:"9pt"}}>
-                        <p style = {style2}>
+                  <div >
+                        <p className = "size3">
                               {props.info[5]} 
                         </p>
                   </div>

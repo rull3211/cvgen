@@ -2,31 +2,30 @@ import React from 'react';
 import InputComp from './InputComp'
 
 const LinkAdder = (props) => {
-      const style = {
-            display: "flex",
-            margin: "10px"
-      }
-      const wrapper = {
-            border: "2px solid rgb(147, 148, 150)",
-            marginBottom: "10px"
-
-      }
+    
       return(
-            <div style = {wrapper}>
-                  <div style = {style}>
+            <div  className = "OuterWrapper">
+                  <div className = "InnerWrapper">
+                         <div className = "InputWrapper">
                         <InputComp  
                               handler = {props.handler} 
                               id = {props.id1} 
                               cName = {props.cname} 
-                              ph = {props.ph1} >
+                              ph = {props.ph1} 
+                              val = {props.val.språk}
+                              >
                         </InputComp> 
                         <InputComp  
                               handler = {props.handler} 
                               id = {props.id2} 
                               cName = {props.cname} 
-                              ph = {props.ph2}>
+                              ph = {props.ph2}
+                              val = {props.val.nivå}>
+                                    
                         </InputComp>
                   </div>
+                  </div>
+                 
             </div>
             
       )
