@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cvgen/static/css/main.362247de.chunk.css",
+    "main.css": "/cvgen/static/css/main.221a4a29.chunk.css",
     "main.js": "/cvgen/static/js/main.8c30e2ee.chunk.js",
     "main.js.map": "/cvgen/static/js/main.8c30e2ee.chunk.js.map",
     "runtime-main.js": "/cvgen/static/js/runtime-main.9a09df61.js",
@@ -16,7 +16,7 @@
     "static/js/6.91f73d0b.chunk.js": "/cvgen/static/js/6.91f73d0b.chunk.js",
     "static/js/6.91f73d0b.chunk.js.map": "/cvgen/static/js/6.91f73d0b.chunk.js.map",
     "index.html": "/cvgen/index.html",
-    "static/css/main.362247de.chunk.css.map": "/cvgen/static/css/main.362247de.chunk.css.map",
+    "static/css/main.221a4a29.chunk.css.map": "/cvgen/static/css/main.221a4a29.chunk.css.map",
     "static/js/2.625f4903.chunk.js.LICENSE.txt": "/cvgen/static/js/2.625f4903.chunk.js.LICENSE.txt",
     "static/js/3.b279c332.chunk.js.LICENSE.txt": "/cvgen/static/js/3.b279c332.chunk.js.LICENSE.txt",
     "static/js/4.5fd927e3.chunk.js.LICENSE.txt": "/cvgen/static/js/4.5fd927e3.chunk.js.LICENSE.txt",
@@ -25,7 +25,7 @@
   "entrypoints": [
     "static/js/runtime-main.9a09df61.js",
     "static/js/3.b279c332.chunk.js",
-    "static/css/main.362247de.chunk.css",
+    "static/css/main.221a4a29.chunk.css",
     "static/js/main.8c30e2ee.chunk.js"
   ]
 }
