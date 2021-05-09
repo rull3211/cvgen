@@ -154,7 +154,7 @@ ul{
 .ColorSelectors{
   display: flex;
 }
-.SideBar h1 , p{
+.SideBar h1 , .SideBar p{
   color: white;
 
 }
