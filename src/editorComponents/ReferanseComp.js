@@ -11,14 +11,14 @@ const ReferaneComp = (props)=>{
                         <InputComp 
                               id = "navn" 
                               handler = {props.handler} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph = "Referentens Navn"
                               val = {props.val.navn}>
                         </InputComp>
                         <InputComp 
                               id = "org" 
                               handler = {props.handler} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph = "Organisasjon/stilling"
                               val = {props.val.org}>
                         </InputComp>
@@ -27,14 +27,14 @@ const ReferaneComp = (props)=>{
                         <InputComp 
                               id = "tlf" 
                               handler = {props.handler} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph ="Telefonnummer"
                               val = {props.val.tlf}>
                         </InputComp>
                         <InputComp 
                               id = "email" 
                               handler = {props.handler} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph ="Email"
                               val = {props.val.email}>
                         </InputComp>

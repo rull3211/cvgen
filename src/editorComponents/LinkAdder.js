@@ -10,7 +10,7 @@ const LinkAdder = (props) => {
                         <InputComp  
                               handler = {props.handler} 
                               id = {props.id1} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph = {props.ph1} 
                               val = {props.val.språk}
                               >
@@ -18,7 +18,7 @@ const LinkAdder = (props) => {
                         <InputComp  
                               handler = {props.handler} 
                               id = {props.id2} 
-                              cName = {props.cname} 
+                              cName = "infoInput"
                               ph = {props.ph2}
                               val = {props.val.nivå}>
                                     

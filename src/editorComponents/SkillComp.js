@@ -7,7 +7,7 @@ const SkillComp = props => {
                   <div className = "InnerWrapper">
                         <InputComp 
                               id = "skill" 
-                              cName = "skillAdders" 
+                              cName = "infoInput"
                               handler = {props.handler}
                               ph = "Ferdighet"
                               val = {props.val}>

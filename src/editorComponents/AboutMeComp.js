@@ -9,20 +9,9 @@ const AboutMeComp = (props)=> {
             fontSize : "15pt"
       }
 
-      const style = {
-            border: "none",
-            width: "100%",
-            height: "50px",
-            fontSize: "22px",
-            
-      }
       return(
             <div className ="About">
-                  <input style = {style} 
-                        id = "aboutmeheader" 
-                        onChange = {props.handler} 
-                        placeholder = "Om deg - (Overskrift - kan endres)">
-                  </input>
+                  
                   <textarea style = {textStyle} 
                         id = "aboutMe" 
                         onChange = {props.handler}

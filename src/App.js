@@ -70,6 +70,34 @@ class App extends Component {
     let buttonText = ""
     if(!preview){
       buttonText = "Lukk forhåndsvisning"
+      if(this.state.aboutmeheader.trim() ===""){
+        this.setState({aboutmeheader: "Om meg"})
+      }
+      if(this.state.Detaljer.trim() ===""){
+        this.setState({Detaljer: "Detaljer"})
+      }
+      if(this.state.Linker.trim() ===""){
+        this.setState({Linker: "Linker"})
+      }
+      if(this.state.Ferdigheter.trim() ===""){
+        this.setState({Ferdigheter: "Ferdigheter"})
+      }
+      if(this.state.Språk.trim() ===""){
+        this.setState({Språk: "Språk"})
+      }
+      if(this.state.Utdanning.trim() ===""){
+        this.setState({Utdanning: "Utdanning"})
+      }
+      if(this.state.Erfaring.trim() ===""){
+        this.setState({Erfaring: "Erfaring"})
+      }
+      if(this.state.Referanse.trim() ===""){
+        this.setState({Referanse: "Referanser"})
+      }
+      if(this.state.Fritiden.trim() ===""){
+        this.setState({Fritiden: "På fritiden"})
+      }
+   
     }
     else{
       buttonText = "Åpne forhåndsvisning"
@@ -249,11 +277,13 @@ class App extends Component {
     let editPage = (
       <div className="EditPage">
         <div className="EditPageWrapper">
-
-         
             <div className = "FirstBlock">
               <div className = "FirstRow">
-                      <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (Overskrift - kan endres)"></InputComp>
+                  <div className = "overskriftWrapper">
+                    <InputComp val = {this.state.Detaljer} cName = "overskriftInput" id="Detaljer" handler={this.inputHandler} ph="Detaljer"></InputComp>
+                      <p>- (Overksrift - kan endres)</p>
+                  </div>
+                      
                   <div className = "ColorSelectors">
                         <ColorSelector color = "rgb(0, 89, 255)" handler = {this.ColorSelectorHandler}></ColorSelector>
                         <ColorSelector color = "rgb(8, 76, 65)" handler = {this.ColorSelectorHandler}></ColorSelector>
@@ -267,7 +297,7 @@ class App extends Component {
                     <InputComp 
                       handler={this.inputHandler} 
                       id={"fName"} 
-                      came={"Personalia"} 
+                      cName = "infoInput"
                       val={this.state.fName} > 
                     </InputComp>
                   </div>
@@ -276,7 +306,7 @@ class App extends Component {
                     <InputComp 
                       handler={this.inputHandler} 
                       id={"lName"} 
-                      cName={"Personalia"} 
+                      cName = "infoInput"
                       val={this.state.lName} > 
                     </InputComp>
                   </div>
@@ -286,7 +316,8 @@ class App extends Component {
                     <p>Telefonnummer</p>
                     <InputComp
                       handler={this.inputHandler} 
-                      id={"tlf"} cName={"Personalia"} 
+                      id={"tlf"}
+                      cName = "infoInput"
                       val={this.state.tlf} > 
                     </InputComp>
                   </div>
@@ -295,12 +326,17 @@ class App extends Component {
                     <InputComp 
                       handler={this.inputHandler} 
                       id={"email"} 
-                      cName={"Personalia"} 
+                      cName = "infoInput"
                       val={this.state.email} > 
                     </InputComp>
                   </div>
                 </div>
                 <div>
+                  <div className = "overskriftWrapper">
+                    <InputComp val = {this.state.aboutmeheader} cName = "overskriftInput" id="aboutmeheader" handler={this.inputHandler} ph="Om meg"></InputComp>
+                    <p>- (Overksrift - kan endres)</p>
+                  </div>
+                
                   <AboutMeComp handler={this.inputHandler}
                     val={this.state.aboutMe}
                   ></AboutMeComp>
@@ -309,11 +345,17 @@ class App extends Component {
             
       
           <ul className="Skill">
-            <InputComp  
-              id="Ferdigheter" 
-              handler={this.inputHandler} 
-              ph="Ferdigheter (Overskrift - kan endres)"> 
-            </InputComp>
+            
+            <div className = "overskriftWrapper">
+              <InputComp  
+                id="Ferdigheter" 
+                cName = "overskriftInput"
+                val = {this.state.Ferdigheter}
+                handler={this.inputHandler} 
+                ph="Ferdigheter"> 
+              </InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             {renderSkillAdders}
             <AddButton 
               n="skillAdders" 
@@ -322,11 +364,17 @@ class App extends Component {
             </AddButton>
           </ul>
           <ul className ="Språk">
-            <InputComp  
-              id="Språk" 
-              handler={this.inputHandler} 
-              ph="Språk (Overskrift - kan endres)"> 
-            </InputComp>
+           
+            <div className = "overskriftWrapper">
+               <InputComp  
+                id="Språk" 
+                cName = "overskriftInput"
+                val = {this.state.Språk}
+                handler={this.inputHandler} 
+                ph="Språk"> 
+              </InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             {renderLanguageAdders}
             <AddButton 
               n="languageAdders" 
@@ -335,11 +383,17 @@ class App extends Component {
             </AddButton>
           </ul>
           <ul className = "Utdanning">
-            <InputComp 
-              id="Utdanning" 
-              handler={this.inputHandler} 
-              ph="Utdanning (Overskrift - kan endres)"> 
-            </InputComp>
+           
+            <div className = "overskriftWrapper">
+              <InputComp 
+                id="Utdanning" 
+                cName = "overskriftInput"
+                val = {this.state.Utdanning}
+                handler={this.inputHandler} 
+                ph="Utdanning"> 
+              </InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             {renderUtdanningAdders}
             <AddButton 
               n="utdanning" 
@@ -348,11 +402,17 @@ class App extends Component {
             </AddButton>
           </ul>
           <ul className ="Erfaring">
-            <InputComp  
-              id="Erfaring" 
-              handler={this.inputHandler} 
-              ph="Erfaring (Overskrift - kan endres)"> 
-            </InputComp>
+            
+            <div className = "overskriftWrapper">
+              <InputComp  
+                id="Erfaring" 
+                cName = "overskriftInput"
+                handler={this.inputHandler} 
+                val = {this.state.Erfaring}
+                ph="Erfaring"> 
+              </InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             {renderErfaringAdders}
             <AddButton 
               n="erfaringer" 
@@ -361,11 +421,17 @@ class App extends Component {
             </AddButton>
           </ul>
           <ul className = "Referanser">
-            <InputComp  
-              id="Referanser" 
-              handler={this.inputHandler}
-              ph="Referanser (Overskrift - kan endres)"> 
-            </InputComp>
+           
+            <div className = "overskriftWrapper">
+              <InputComp  
+                id="Referanser" 
+                cName = "overskriftInput"
+                val = {this.state.Referanse}
+                handler={this.inputHandler}
+                ph="Referanser"> 
+              </InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             <div>{renderReferanserAdders} </div>
             <AddButton 
               n="referanser" 
@@ -373,11 +439,17 @@ class App extends Component {
               handler={this.addHandler} > </AddButton>
           </ul>
           <ul className = "Fritiden">
-            <InputComp  
-              id="Fritiden" 
-              handler={this.inputHandler} 
-              ph="På fritiden (Overskrift - kan endres)"> 
-            </InputComp>
+           
+            <div className = "overskriftWrapper">
+              <InputComp  
+                id="Fritiden" 
+                cName = "overskriftInput"
+                handler={this.inputHandler} 
+                val = {this.state.Fritiden}
+                ph = "På fritiden"
+              ></InputComp>
+              <p>- (Overksrift - kan endres)</p>
+            </div>
             {renderFritidenAdders}
             <AddButton 
               n="fritider" 

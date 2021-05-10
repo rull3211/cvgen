@@ -20,14 +20,14 @@ const UtdanningEditor = (props)=>{
                                     id = "grad" 
                                     handler ={props.handler} 
                                     ph= {props.ph[0]} 
-                                    cName ={props.cname}
+                                    cName = "infoInput"
                                     val = {props.val.grad}>
                               </InputComp>
                               <InputComp 
                                     id = "skole" 
                                     handler ={props.handler} 
                                     ph= {props.ph[1]} 
-                                    cName ={props.cname}
+                                    cName = "infoInput"
                                     val = {props.val.skole}>
                               </InputComp>
                         </div>
@@ -36,14 +36,14 @@ const UtdanningEditor = (props)=>{
                                     id = "start" 
                                     handler ={props.handler} 
                                     ph= {props.ph[2]} 
-                                    cName ={props.cname}
+                                    cName = "infoInput"
                                     val = {props.val.start} >
                               </InputComp>
                               <InputComp 
                                     id = "slutt" 
                                     handler ={props.handler} 
                                     ph= {props.ph[3]} 
-                                    cName ={props.cname}
+                                    cName = "infoInput"
                                     val = {props.val.slutt}>
                               </InputComp>
                         </div>
@@ -52,7 +52,7 @@ const UtdanningEditor = (props)=>{
                                     handler = {props.handler} 
                                     id = "by" 
                                     ph= {props.ph[4]}
-                                    cName ={props.cname}
+                                    cName = "infoInput"
                                     val = {props.val.by}>
                               </InputComp>
                         </div>
