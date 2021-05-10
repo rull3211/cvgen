@@ -21,7 +21,7 @@ const AboutMeComp = (props)=> {
                   <input style = {style} 
                         id = "aboutmeheader" 
                         onChange = {props.handler} 
-                        placeholder = "Om deg - endre">
+                        placeholder = "Om deg - (Overskrift - kan endres)">
                   </input>
                   <textarea style = {textStyle} 
                         id = "aboutMe" 

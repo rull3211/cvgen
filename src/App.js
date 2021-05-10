@@ -253,7 +253,7 @@ class App extends Component {
          
             <div className = "FirstBlock">
               <div className = "FirstRow">
-                      <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (kan endres)"></InputComp>
+                      <InputComp sT="1" id="Detaljer" handler={this.inputHandler} ph="Detaljer (Overskrift - kan endres)"></InputComp>
                   <div className = "ColorSelectors">
                         <ColorSelector color = "rgb(0, 89, 255)" handler = {this.ColorSelectorHandler}></ColorSelector>
                         <ColorSelector color = "rgb(8, 76, 65)" handler = {this.ColorSelectorHandler}></ColorSelector>
@@ -312,7 +312,7 @@ class App extends Component {
             <InputComp  
               id="Ferdigheter" 
               handler={this.inputHandler} 
-              ph="Ferdigheter (kan endres)"> 
+              ph="Ferdigheter (Overskrift - kan endres)"> 
             </InputComp>
             {renderSkillAdders}
             <AddButton 
@@ -325,7 +325,7 @@ class App extends Component {
             <InputComp  
               id="Språk" 
               handler={this.inputHandler} 
-              ph="Språk (kan endres)"> 
+              ph="Språk (Overskrift - kan endres)"> 
             </InputComp>
             {renderLanguageAdders}
             <AddButton 
@@ -338,7 +338,7 @@ class App extends Component {
             <InputComp 
               id="Utdanning" 
               handler={this.inputHandler} 
-              ph="Utdanning (kan endres)"> 
+              ph="Utdanning (Overskrift - kan endres)"> 
             </InputComp>
             {renderUtdanningAdders}
             <AddButton 
@@ -351,7 +351,7 @@ class App extends Component {
             <InputComp  
               id="Erfaring" 
               handler={this.inputHandler} 
-              ph="Erfaring (kan endres)"> 
+              ph="Erfaring (Overskrift - kan endres)"> 
             </InputComp>
             {renderErfaringAdders}
             <AddButton 
@@ -364,7 +364,7 @@ class App extends Component {
             <InputComp  
               id="Referanser" 
               handler={this.inputHandler}
-              ph="Referanser (kan endres)"> 
+              ph="Referanser (Overskrift - kan endres)"> 
             </InputComp>
             <div>{renderReferanserAdders} </div>
             <AddButton 
@@ -376,7 +376,7 @@ class App extends Component {
             <InputComp  
               id="Fritiden" 
               handler={this.inputHandler} 
-              ph="På fritiden (kan endres)"> 
+              ph="På fritiden (Overskrift - kan endres)"> 
             </InputComp>
             {renderFritidenAdders}
             <AddButton 
