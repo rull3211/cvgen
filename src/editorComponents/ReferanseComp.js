@@ -12,6 +12,7 @@ const ReferaneComp = (props)=>{
                               id = "navn" 
                               handler = {props.handler} 
                               cName = "infoInput"
+                              n = {props.cname}
                               ph = "Referentens Navn"
                               val = {props.val.navn}>
                         </InputComp>
@@ -19,6 +20,7 @@ const ReferaneComp = (props)=>{
                               id = "org" 
                               handler = {props.handler} 
                               cName = "infoInput"
+                              n = {props.cname}
                               ph = "Organisasjon/stilling"
                               val = {props.val.org}>
                         </InputComp>
@@ -28,6 +30,7 @@ const ReferaneComp = (props)=>{
                               id = "tlf" 
                               handler = {props.handler} 
                               cName = "infoInput"
+                              n = {props.cname}
                               ph ="Telefonnummer"
                               val = {props.val.tlf}>
                         </InputComp>
@@ -35,6 +38,7 @@ const ReferaneComp = (props)=>{
                               id = "email" 
                               handler = {props.handler} 
                               cName = "infoInput"
+                              n = {props.cname}
                               ph ="Email"
                               val = {props.val.email}>
                         </InputComp>

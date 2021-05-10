@@ -8,6 +8,7 @@ const SkillComp = props => {
                         <InputComp 
                               id = "skill" 
                               cName = "infoInput"
+                              n = {props.cname}
                               handler = {props.handler}
                               ph = "Ferdighet"
                               val = {props.val}>

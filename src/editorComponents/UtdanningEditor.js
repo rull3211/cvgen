@@ -21,6 +21,7 @@ const UtdanningEditor = (props)=>{
                                     handler ={props.handler} 
                                     ph= {props.ph[0]} 
                                     cName = "infoInput"
+                                    n = {props.cname}
                                     val = {props.val.grad}>
                               </InputComp>
                               <InputComp 
@@ -28,6 +29,7 @@ const UtdanningEditor = (props)=>{
                                     handler ={props.handler} 
                                     ph= {props.ph[1]} 
                                     cName = "infoInput"
+                                    n = {props.cname}
                                     val = {props.val.skole}>
                               </InputComp>
                         </div>
@@ -37,6 +39,7 @@ const UtdanningEditor = (props)=>{
                                     handler ={props.handler} 
                                     ph= {props.ph[2]} 
                                     cName = "infoInput"
+                                    n = {props.cname}
                                     val = {props.val.start} >
                               </InputComp>
                               <InputComp 
@@ -44,6 +47,7 @@ const UtdanningEditor = (props)=>{
                                     handler ={props.handler} 
                                     ph= {props.ph[3]} 
                                     cName = "infoInput"
+                                    n = {props.cname}
                                     val = {props.val.slutt}>
                               </InputComp>
                         </div>
@@ -53,6 +57,7 @@ const UtdanningEditor = (props)=>{
                                     id = "by" 
                                     ph= {props.ph[4]}
                                     cName = "infoInput"
+                                    n = {props.cname}
                                     val = {props.val.by}>
                               </InputComp>
                         </div>
@@ -62,6 +67,7 @@ const UtdanningEditor = (props)=>{
                               id = "beskrivelse" 
                               onChange ={props.handler} 
                               className ={props.cname}
+                              n = {props.cname}
                               value={props.val.beskrivelse}>
                         </textarea>
                   </div>

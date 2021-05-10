@@ -7,7 +7,9 @@ const inputComp = (props)=>{
                   id = {props.id} 
                   className = {props.cName} 
                   value = {props.val} 
-                  placeholder = {props.ph}>
+                  placeholder = {props.ph}
+                  n = {props.n}
+                  >
             </input>
       )
 }

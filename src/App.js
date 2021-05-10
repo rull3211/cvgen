@@ -2,7 +2,6 @@ import './App.css';
 import React, { Component } from 'react';
 import InputComp from './editorComponents/InputComp';
 import Name from './displayComponents/Name';
-import OneLiner from './displayComponents/OneLiner';
 import AddButton from './editorComponents/AddButton';
 import LinkAdder from './editorComponents/LinkAdder';
 import AboutMeComp from './editorComponents/AboutMeComp'
@@ -57,7 +56,7 @@ class App extends Component {
   }; // behandler alle inputeventer hvor indeks ikke er nødvendig
 
   indexedInputHandler = (index, event) => {
-    let id = event.target.className;
+    let id = event.target.getAttribute("n");
     let newLi = this.state[id];
     let newObj = newLi[index];
     newObj[event.target.id] = event.target.value;
@@ -166,6 +165,7 @@ class App extends Component {
           key={index} 
           handler={this.indexedInputHandler.bind(this, index)}
           val = {this.state.skillAdders[index].skill}
+          cname = "skillAdders"
           >
         </SkillComp>);
     });
@@ -219,7 +219,8 @@ class App extends Component {
     let renderSkills = this.state.skillAdders.map((el, index) => {
       return (
         <p className = "size4" key={index}>
-          {el.skill}
+          {el.skill
+          }
         </p>);
     });
     let renderLanguage = this.state.languageAdders.map((el, index) => {
@@ -424,7 +425,7 @@ class App extends Component {
            
             <div className = "overskriftWrapper">
               <InputComp  
-                id="Referanser" 
+                id="Referanse" 
                 cName = "overskriftInput"
                 val = {this.state.Referanse}
                 handler={this.inputHandler}
