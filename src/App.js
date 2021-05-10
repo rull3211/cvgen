@@ -46,7 +46,8 @@ class App extends Component {
     fritider: [],
     color : "rgb(8, 76, 65)",
     preview : false,
-    buttonText : "Åpne forhåndsvisning"
+    buttonText : "Åpne forhåndsvisning",
+    img: ""
   };
 
   inputHandler = event => {
@@ -106,7 +107,8 @@ class App extends Component {
   }
   
   render() {
-  
+    
+    let OmMeg = (<h1 className="size1">{this.state.aboutmeheader}</h1>)
     let Detaljer = (<h1  className = "size6">{this.state.Detaljer} </h1>);
     let Ferdigheter = (<h1 className = "size6">{this.state.Ferdigheter} </h1>);
     let Språk = (<h1  className = "size6">{this.state.Språk} </h1>);
@@ -394,20 +396,20 @@ class App extends Component {
             <div className="SideBarWrapper" >
               <div className="SideBar" style = {{"backgroundColor": this.state.color}}>
                 <div className = "sidebarTop">
-                  {pic}
+                  {this.state.img !== "" ? pic : null}
                   <Name fName={this.state.fName} lName={this.state.lName}></Name>
                 </div>
                 <div className=" SectionSplitter1">
-                  {Detaljer}
+                  {this.state.tlf || this.state.email !== "" ? Detaljer : null}
                   {this.state.tlf ? <p className = "size4">{this.state.tlf}</p> :null}
                   {this.state.email ? <p className = "size4">{this.state.email}</p> : null}
                 </div>
                 <div className=" SectionSplitter1">
-                  {Ferdigheter}
+                  {this.state.skillAdders.length > 0 ? Ferdigheter : null}
                   {renderSkills}
                 </div>
                 <div className=" SectionSplitter1">
-                  {Språk}
+                  {this.state.languageAdders.length > 0 ? Språk : null}
                   {renderLanguage}
                 </div>
               </div>
@@ -415,22 +417,23 @@ class App extends Component {
             <div className="MainContentWrapper">
               <div className="MainContent">
                 <div className="SectionSplitter">
-                  <DisplayAboutMe header={this.state.aboutmeheader} content={this.state.aboutMe}></DisplayAboutMe>
+                  {this.state.aboutMe !== "" ? OmMeg : null}
+                  <DisplayAboutMe content={this.state.aboutMe}></DisplayAboutMe>
                 </div>
                 <div className="SectionSplitter">
-                  {Utdanning}
+                  {this.state.utdanning.length > 0 ? Utdanning : null}
                   {renderUtdanning}
                 </div>
                 <div className="SectionSplitter">
-                  {Erfaring}
+                  {this.state.erfaringerlength > 0 ? Erfaring : null}
                   {renderErfaring}
                 </div>
                 <div className="SectionSplitter">
-                  {Referanse}
+                  {this.state.referanser.length > 0 ? Referanse : null}
                   {renderReferanse}
                 </div>
                 <div className="SectionSplitter">
-                  {Fritiden}
+                  {this.state.fritider.length > 0 ? Fritiden : null}
                   {renderFritider}
                 </div>
               </div>

@@ -20,20 +20,40 @@
   color: white;
   font-size: 12pt;
   border: none;
-  box-shadow: 3px 3px #888888
-}
-
-.DownloadButton:focus { 
-  outline: none; 
+  box-shadow: 4px 4px #999;
 }
 
 .DownloadButton:hover{
+  cursor: pointer;
   background-color: green;
+  box-shadow: 4px 4px #999;
+
+}
+
+.DownloadButton:active{
+  background-color: green;
+  transform: translateY(4px);
   box-shadow: none;
 }
 
+.ColorSelector{
+  box-shadow: 3px 3px #999;
+}
+.ColorSelector:hover{
+  cursor: pointer;
+  box-shadow: 3px 3px #999;
+
+}
+.ColorSelector:active{
+  transform: translateY(3px);
+  box-shadow: none;
+}
 /*Edit Page*/
 /*Edit Page colon separator and other modifiers*/
+h1, p, h2{
+  word-break: break-all;
+}
+
 #grad,#start,#navn,#tlf,#språk,.LeftSide{
   margin-right: 30px;
 }
@@ -164,6 +184,7 @@ ul{
   display: flex;
   flex-direction: column;
   padding-left :15%;
+  padding-right: 10%;
 }
 
 .SectionSplitter1 > h1{
